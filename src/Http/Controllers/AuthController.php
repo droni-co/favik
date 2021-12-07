@@ -55,7 +55,6 @@ class AuthController extends Controller
     $user->favik_token = json_encode($token);
     $user->admin = $favikUser['admin'];
     $user->name = $favikUser['name'];
-    $user->status = 'active';
     $user->avatar = $favikUser['avatar'];
 
     $user->save();
