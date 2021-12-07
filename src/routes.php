@@ -1,6 +1,6 @@
 <?php
 
-use Favik\Favik\Http\Controllers\AuthController;
+use Favik\Http\Controllers\AuthController;
 
 Route::get('/auth/login', [AuthController::class, 'login'])->name('login');
 Route::get('/auth/login/redirect', [AuthController::class, 'redirect'])->name('login.redirect');

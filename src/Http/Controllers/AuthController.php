@@ -1,6 +1,6 @@
 <?php
 
-namespace Favik\Favik\Http\Controllers;
+namespace Favik\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
