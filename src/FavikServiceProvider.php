@@ -23,7 +23,7 @@ class FavikServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+      $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
       include __DIR__.'/routes.php';
-      $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }

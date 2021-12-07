@@ -14,9 +14,10 @@ class AddAuthToUsersTable extends Migration
   public function up()
   {
     Schema::table('users', function (Blueprint $table) {
-      $table->string('avatar')->nullable();
-      $table->boolean('admin')->default(false);
-      $table->json('favik_token')->nullable();
+      $table->json('favik_token')->nullable()->after('password');
+      $table->boolean('admin')->default(false)->after('password');
+      $table->string('avatar')->nullable()->after('password');
+      
     });
   }
 
