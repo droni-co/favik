@@ -1,0 +1,24 @@
+{
+  "name": "favik/favik",
+  "description": "Base structure for Favik Engine",
+  "authors": [
+      {
+          "name": "Gustavo Barragan",
+          "email": "gustavo.barragan@favik.io"
+      }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+        "Favik\\Favik\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+        "providers": [
+            "Favik\\Favik\\FavikServiceProvider"
+        ]
+    }
+  },
+  "require": {}
+}
