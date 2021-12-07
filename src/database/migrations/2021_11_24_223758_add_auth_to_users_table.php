@@ -17,7 +17,6 @@ class AddAuthToUsersTable extends Migration
       $table->json('favik_token')->nullable()->after('password');
       $table->boolean('admin')->default(false)->after('password');
       $table->string('avatar')->nullable()->after('password');
-      
     });
   }
 

@@ -17,13 +17,14 @@ class AuthController extends Controller
     $request->session()->put('state', $state = Str::random(40));
 
     $query = http_build_query([
-        'client_id' => env("FAVIK_CLIENT_ID"),
-        'redirect_uri' => env("FAVIK_CALLBACK_URL"),
-        'response_type' => 'code',
-        'scope' => '',
-        'state' => $state,
+      'client_id' => env("FAVIK_CLIENT_ID"),
+      'redirect_uri' => env("FAVIK_CALLBACK_URL"),
+      'response_type' => 'code',
+      'scope' => '',
+      'state' => $state,
     ]);
-    return redirect('https://auth.favik.dev/oauth/authorize?'.$query);
+    
+    return redirect(env("FAVIK_AUTH_URL").'/oauth/authorize?'.$query);
   }
   public function callback(Request $request) {
     $state = $request->session()->pull('state');
@@ -33,7 +34,7 @@ class AuthController extends Controller
       InvalidArgumentException::class
     );
 
-    $response = Http::asForm()->post('https://auth.favik.dev/oauth/token', [
+    $response = Http::asForm()->post(env("FAVIK_AUTH_URL").'/oauth/token', [
       'grant_type' => 'authorization_code',
       'client_id' => env("FAVIK_CLIENT_ID"),
       'client_secret' => env("FAVIK_CLIENT_SECRET"),
@@ -66,7 +67,7 @@ class AuthController extends Controller
 
   private function getUser($token) {
     $response = Http::withToken($token)
-      ->get('https://auth.favik.dev/api/user');
+      ->get(env("FAVIK_AUTH_URL").'/api/user');
     return $response->json();
   }
 
@@ -74,7 +75,7 @@ class AuthController extends Controller
     $token = json_decode(Auth::user()->favik_token);
     try {
       Http::withToken($token->access_token)
-        ->post('https://auth.favik.dev/oauth/revoke');
+        ->post(env("FAVIK_AUTH_URL").'/oauth/revoke');
     } catch (\Exception $e) {
       //
     }
