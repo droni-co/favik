@@ -13,7 +13,7 @@ class FavikServiceProvider extends ServiceProvider
      */
     public function register()
     {
-      $this->mergeConfigFrom(__DIR__.'/config/config.php', 'favik');
+      $this->mergeConfigFrom(__DIR__.'/config/database.php', 'favik');
     }
 
     /**
