@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
+use Favik\Favik\Models\Permissions;
 use Auth;
 
 class AuthController extends Controller
