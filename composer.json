@@ -1,6 +1,7 @@
 {
   "name": "favik/favik",
   "description": "Base structure for Favik Engine",
+  "license": "MIT",
   "authors": [
       {
           "name": "Gustavo Barragan",
