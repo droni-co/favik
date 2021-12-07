@@ -1,15 +1,23 @@
 <?php
 
-namespace App\Models;
+namespace Favik\Favik\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable implements MustVerifyEmail
+use Favik\Favik\Models\Item;
+use Favik\Favik\Models\Order;
+
+class User extends Model
 {
   use HasFactory, Notifiable;
+
+  /**
+   * The database table used by the model.
+   *
+   * @var string
+   */
+  protected $connection = 'mysql_favik';
+  protected $table = 'push';
 
   /**
    * The attributes that are mass assignable.
@@ -53,12 +61,9 @@ class User extends Authenticatable implements MustVerifyEmail
       'email_verified_at' => 'datetime',
   ];
   public function items() {
-    return $this->hasMany('App\Models\Item');
+    return $this->hasMany(Item::class);
   }
   public function orders() {
-    return $this->hasMany('App\Models\Order');
-  }
-  public function roles() {
-    return $this->hasMany(Role::class);
+    return $this->hasMany(Order::class);
   }
 }

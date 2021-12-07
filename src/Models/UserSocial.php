@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Models;
-use App\Models\User;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+namespace Favik\Favik\Models;
 
-class UserSocial extends Model implements AuthenticatableContract {
+use Illuminate\Database\Eloquent\Model;
+
+class UserSocial extends Model  {
 
     use Authenticatable;
 
@@ -15,6 +13,7 @@ class UserSocial extends Model implements AuthenticatableContract {
      *
      * @var string
      */
+    protected $connection = 'mysql_favik';
     protected $table = 'users_social';
 
     /**
