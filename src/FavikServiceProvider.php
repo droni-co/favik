@@ -13,7 +13,7 @@ class FavikServiceProvider extends ServiceProvider
      */
     public function register()
     {
-      // dd('hola mundo');
+      $this->mergeConfigFrom(__DIR__.'/config/config.php', 'favik');
     }
 
     /**

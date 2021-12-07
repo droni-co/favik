@@ -13,7 +13,9 @@ class Merchant extends Model {
      *
      * @var string
      */
+    protected $connection = 'mysql_favik';
     protected $table = 'merchants';
+    
 
     /**
      * The attributes that are mass assignable.
