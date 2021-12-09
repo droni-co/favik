@@ -8,4 +8,7 @@ class Permission extends Model {
   public function user() {
     return $this->belongsTo(User::class);
   }
+  public function merchant() {
+    return $this->belongsTo(Merchant::class);
+  }
 }
