@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
-use Favik\Favik\Models\Permissions;
+use Favik\Favik\Models\Permission;
 use Auth;
 
 class AuthController extends Controller
@@ -45,6 +45,7 @@ class AuthController extends Controller
 
     $token = $response->json();
     $favikUser = $this->getUser($token['access_token']);
+    
     //login or create user
     $user = User::where('email', $favikUser['email'])->first();
     if(!$user) {
@@ -59,6 +60,17 @@ class AuthController extends Controller
     $user->avatar = $favikUser['avatar'];
 
     $user->save();
+
+    // Set permissions
+    $localPermissions = Permission::where('user_id', $user->id)->delete();
+
+    foreach($favikUser['permissions'] as $permission) {
+      $newPermission = new Permission;
+      $newPermission->user_id = $user->id;
+      $newPermission->merchant_id = $permission['merchant_id'];
+      $newPermission->role = $permission['role'];
+      $newPermission->save();
+    }
 
     Auth::login($user, true);
 
