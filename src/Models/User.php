@@ -9,7 +9,6 @@ use Favik\Favik\Models\Order;
 
 class User extends Model
 {
-  use HasFactory, Notifiable;
 
   /**
    * The database table used by the model.
