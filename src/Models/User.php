@@ -16,7 +16,7 @@ class User extends Model
    * @var string
    */
   protected $connection = 'mysql_favik';
-  protected $table = 'push';
+  protected $table = 'users';
 
   /**
    * The attributes that are mass assignable.
