@@ -7,3 +7,5 @@ Route::group(['middleware' => ['web']], function () {
   Route::get('/auth/callback', [AuthController::class, 'callback']);
   Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+Route::post('/api/auth/login', [AuthController::class, 'apiLogin']);

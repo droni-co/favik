@@ -83,6 +83,23 @@ class AuthController extends Controller
     return $response->json();
   }
 
+  public function apiLogin(Request $request) {
+    $validated = $request->validate([
+      'email' => 'required|email|max:255',
+      'password' => 'required',
+    ]);
+    $response = Http::asForm()->post(env("FAVIK_AUTH_URL").'/oauth/token', [
+      'grant_type' => 'password',
+      'client_id' => env("FAVIK_CLIENT_ID"),
+      'client_secret' => env("FAVIK_CLIENT_SECRET"),
+      'username' => $request->email,
+      'password' => $request->password,
+      'scope' => '',
+    ]);
+  
+    return $response->json();
+  }
+
   public function logout() {
     $token = json_decode(Auth::user()->favik_token);
     try {

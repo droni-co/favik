@@ -4,7 +4,7 @@ namespace Favik\Favik\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserSocial extends Model  {
+class KeyAccount extends Model  {
 
   /**
    * The database table used by the model.
@@ -12,7 +12,7 @@ class UserSocial extends Model  {
    * @var string
    */
   protected $connection = 'mysql_favik';
-  protected $table = 'users_social';
+  protected $table = 'key_accounts';
 
   /**
    * The attributes that are mass assignable.
@@ -20,17 +20,11 @@ class UserSocial extends Model  {
    * @var array
    */
   protected $fillable = [
-    'username', 
-    'avatar', 
-    'email', 
-    'provider', 
-    'provider_id', 
-    'user_id'
+    'account', 
+    'position', 
+    'engagement', 
+    'followers', 
+    'tags'
   ];
-
-
-  public function user() {
-    return $this->belongsTo(User::class);
-  }
 
 }
