@@ -9,14 +9,23 @@ use Auth;
 
 class GatewayController extends Controller
 {
-  public static function getUser($token) {
-    $response = Http::withToken($token)->get(env("FAVIK_API_URL").'/user');
-    return $response->json();
-  }
-  public static function get($endpoint, $params=[]) {
+  public static function get($app, $endpoint, $params=[]) {
     $token = Auth::user()->favik_token;
-    $response = Http::withToken($token)->get($endpoint, $params);
+    $url = $this->app($app).$endpoint;
+    $response = Http::withToken($token)->get($url, $params);
     return $response;
   }
+  private static function app($app) {
+    $res = [
+      'archimedes' => 'https://archimedes.favik.dev',
+      'attribution' => 'https://attribution.favik.dev',
+      'reports' => 'https://reports.favik.dev',
+    ];
+    return $res[$app];
+  }
 }
-?>
+/*
+use Favik\Favik\Http\Controllers\GatewayController as myHttp;
+
+myHttp::get('archimedes', '/posts/report', []);
+*/
