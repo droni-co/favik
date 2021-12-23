@@ -54,3 +54,21 @@ $merchants = Merchant::all();
 * user
 * UserSocial
 
+### Connect with projects API
+##### You must invoque a GatewayController class, this have a logic of http requests
+Example:
+use Favik\Favik\Http\Controllers\GatewayController as myHttp;
+
+##### The possible values of you can use are following:
+* archimedes
+* attribution
+* reports
+
+##### Examples of request:
+
+* Get type: myHttp::get('archimedes', '/posts/report');
+* Post type: myHttp::post('attribution', '/posts/report', ["example" => "body", "example2": "body2"]);
+* Put type: myHttp::put('reports', '/posts/report/{$object_id}', ["example" => "body", "example2": "body2"]);
+* Patch type: myHttp::patch('archimedes', '/posts/report/{$object_id}', ["example" => "body", "example2": "body2"];
+* Delete type: myHttp::delete('attribution', '/posts/report/{$object_id}');
+

@@ -54,8 +54,3 @@ class GatewayController extends Controller
     return $res[$app];
   }
 }
-/*
-use Favik\Favik\Http\Controllers\GatewayController as myHttp;
-
-myHttp::get('archimedes', '/posts/report', []);
-*/
