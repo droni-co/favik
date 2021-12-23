@@ -12,12 +12,12 @@ class FavikApi
   public function handle($request, Closure $next)
   {
     $token = $request->header()['authorization'][0];
-    $token = str_replace('Bearer ', '', $token);
-    $response = Http::withToken($token)
+    $token = json_decode($token);
+    $response = Http::withToken($token->access_token)
       ->accept('application/json')
       ->get(env("FAVIK_AUTH_URL").'/api/user');
-    dd($response->body());
-    if ($response->status() != 200) {
+    $request->current_user = $response->json();
+    if ($request->current_user) {
       return $next($request);
     }
     return false;
